@@ -16,11 +16,11 @@ public class Vein extends AbstractActiveEntity{
 
     public void executeActivity(WorldModel world, ImageStore imageStore, EventScheduler scheduler)
     {
-        Optional<Point> openPt = world.findOpenAround(this.position);
+        Optional<Point> openPt = world.findOpenAround(this.getPosition());
 
         if (openPt.isPresent())
         {
-            Entity ore = openPt.get().createOre(ORE_ID_PREFIX + this.id, ORE_CORRUPT_MIN +
+            Entity ore = openPt.get().createOre(ORE_ID_PREFIX + this.getId(), ORE_CORRUPT_MIN +
                             rand.nextInt(ORE_CORRUPT_MAX - ORE_CORRUPT_MIN),
                     imageStore.getImageList(ORE_KEY));
             world.addEntity(ore);
@@ -29,6 +29,6 @@ public class Vein extends AbstractActiveEntity{
 
         scheduler.scheduleEvent(this,
                 Activity.createActivityAction(this, world, imageStore),
-                this.actionPeriod);
+                this.getActionPeriod());
     }
 }

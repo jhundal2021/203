@@ -19,7 +19,7 @@ public class Quake extends AbstractAnimatedEntity{
                                 WorldModel world, ImageStore imageStore){
         scheduler.scheduleEvent(this,
                 Activity.createActivityAction(this, world, imageStore),
-                this.actionPeriod);
+                this.getActionPeriod());
         scheduler.scheduleEvent(this,
                 Animation.createAnimationAction(this, QUAKE_ANIMATION_REPEAT_COUNT),
                 this.getAnimationPeriod());

@@ -4,7 +4,7 @@ import processing.core.PImage;
 public interface Entity {
    String getId();
    Point getPosition();
-   void newpos(Point point);
+   void setPosition(Point point);
    List<PImage> getImages();
    PImage getCurrentImage();
 }

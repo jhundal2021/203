@@ -16,13 +16,13 @@ public class Ore extends AbstractActiveEntity {
     }
 
     public void executeActivity(WorldModel world, ImageStore imageStore, EventScheduler scheduler) {
-        Point pos = this.position;  // store current position before removing
+        Point pos = this.getPosition();  // store current position before removing
 
         world.removeEntity(this);
         scheduler.unscheduleAllEvents(this);
 
-        Entity blob = pos.createOreBlob(this.id + BLOB_ID_SUFFIX,
-                this.actionPeriod / BLOB_PERIOD_SCALE,
+        Entity blob = pos.createOreBlob(this.getId() + BLOB_ID_SUFFIX,
+                this.getActionPeriod() / BLOB_PERIOD_SCALE,
                 BLOB_ANIMATION_MIN +
                         rand.nextInt(BLOB_ANIMATION_MAX - BLOB_ANIMATION_MIN),
                 imageStore.getImageList(BLOB_KEY));

@@ -3,9 +3,9 @@ import processing.core.PImage;
 import java.util.List;
 
 public abstract class AbstractEntity implements Entity{
-    protected String id;
-    protected Point position;
-    protected List<PImage> images;
+    private String id;
+    private Point position;
+    private List<PImage> images;
     protected int imageIndex;
     public AbstractEntity(String id, Point position, List<PImage> images, int imageIndex){
         this.id = id;
@@ -22,7 +22,7 @@ public abstract class AbstractEntity implements Entity{
         return position;
     }
 
-    public void newpos(Point point) {
+    public void setPosition(Point point) {
         position = point;
     }
 

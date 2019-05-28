@@ -3,7 +3,7 @@ import processing.core.PImage;
 import java.util.List;
 
 public abstract class AbstractActiveEntity extends AbstractEntity implements ActionEntity{
-    protected int actionPeriod;
+    private int actionPeriod;
 
     public AbstractActiveEntity(String id, Point position, List<PImage> images, int actionPeriod){
         super(id, position, images, 0);
@@ -15,5 +15,9 @@ public abstract class AbstractActiveEntity extends AbstractEntity implements Act
         scheduler.scheduleEvent(this,
                 Activity.createActivityAction(this, world, imageStore),
                 this.actionPeriod);
+    }
+
+    public int getActionPeriod() {
+        return actionPeriod;
     }
 }
