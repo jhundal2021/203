@@ -29,14 +29,7 @@ public abstract class AbstractMiner extends AbstractMover{
 
         return newPos;
     }
-//
-//    public void transform(WorldModel world, EventScheduler scheduler, ImageStore imageStore){
-//        world.removeEntity(this);
-//        scheduler.unscheduleAllEvents(this);
-//
-//        world.addEntity(miner);
-//        miner.scheduleActions(scheduler, world, imageStore);
-//    }
+
     protected int getResourceLimit() {
         return resourceLimit;
     }
