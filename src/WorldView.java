@@ -2,6 +2,7 @@ import processing.core.PApplet;
 import processing.core.PImage;
 
 import javax.swing.text.View;
+import java.util.List;
 import java.util.Optional;
 
 final class WorldView
@@ -11,6 +12,7 @@ final class WorldView
    private final int tileWidth;
    private final int tileHeight;
    private final Viewport viewport;
+   public static final String IMAGE_ID = "worm";
 
    public WorldView(int numRows, int numCols, PApplet screen, WorldModel world,
       int tileWidth, int tileHeight)
@@ -69,6 +71,14 @@ final class WorldView
               this.world.getNumRows() - this.viewport.getNumRows());
 
       this.viewport.shift(newCol, newRow);
+   }
+
+   public void drawImage(int x, int y, ImageStore imageStore)
+   {
+      List<PImage> ImageList = imageStore.getImageList(IMAGE_ID);
+      world.drawImageWorld(x, y, viewport, ImageList);
+      world.drawImageWorld(x+2, y, viewport, ImageList);
+      world.drawImageWorld(x, y+2, viewport, ImageList);
    }
 
    private int clamp(int value, int low, int high)

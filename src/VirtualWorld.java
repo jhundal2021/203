@@ -1,15 +1,23 @@
+import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
 import java.util.Scanner;
 import processing.core.*;
+import processing.event.MouseEvent;
+
+import javax.imageio.*;
 
 public final class VirtualWorld
    extends PApplet
 {
    private static final int TIMER_ACTION_PERIOD = 100;
 
-   private static final int VIEW_WIDTH = 640;
-   private static final int VIEW_HEIGHT = 480;
+   private static final int VIEW_WIDTH = 1300;
+   private static final int VIEW_HEIGHT = 950;
    private static final int TILE_WIDTH = 32;
    private static final int TILE_HEIGHT = 32;
    private static final int WORLD_WIDTH_SCALE = 2;
@@ -181,6 +189,16 @@ public final class VirtualWorld
          }
       }
    }
+
+
+   public void mouseClicked(processing.event.MouseEvent e)
+   {
+      int x = e.getX()/TILE_WIDTH;
+      int y = e.getY()/TILE_HEIGHT;
+      view.drawImage(x, y, imageStore);
+   }
+
+
 
    public static void main(String [] args)
    {
