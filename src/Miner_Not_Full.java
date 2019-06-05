@@ -40,6 +40,17 @@ public class Miner_Not_Full extends AbstractMiner{
 
         return false;
     }
+
+    public Ghost transformGhost(WorldModel world, EventScheduler scheduler, ImageStore imageStore){
+        Ghost ghost = getPosition().createGhost(this.getId(), this.getPosition(), imageStore.getImageList(WorldModel.GHOST_KEY), this.getActionPeriod(), this.getAnimationPeriod());
+        world.removeEntity(this);
+        scheduler.unscheduleAllEvents(this);
+
+        world.addEntity(ghost);
+        ghost.scheduleActions(scheduler, world, imageStore);
+        return ghost;
+    }
+
     public void task(WorldModel world, Entity target, EventScheduler scheduler){
         this.resourceCount += 1;
         world.removeEntity(target);

@@ -94,6 +94,10 @@ final class Point
       return new Vein(id, this, images, actionPeriod);
    }
 
+   public Ghost createGhost(String id, Point position, List<PImage> images, int actionPeriod, int animationPeriod) {
+      return new Ghost(id, position, images, actionPeriod, animationPeriod);
+   }
+
    public static Optional<Entity> nearestEntity(List<Entity> entities, Point pos)
    {
       if (entities.isEmpty())

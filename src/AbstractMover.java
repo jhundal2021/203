@@ -14,13 +14,14 @@ public abstract class AbstractMover extends AbstractAnimatedEntity implements Po
     private BiPredicate<Point, Point> withinReach(){ return (pt1, pt2) -> Point.adjacent(pt1, pt2);}
 
     public Point nextPosition(WorldModel world, Point destPos) {
-        //PathingStrategy p = new SingleStepPathingStrategy();
-        PathingStrategy p = new AStarPathingStrategy();
+        PathingStrategy p = new SingleStepPathingStrategy();
+        //PathingStrategy p = new AStarPathingStrategy();
         List<Point> path = p.computePath(getPosition(), destPos, canPassThrough(world), withinReach(), p.CARDINAL_NEIGHBORS);
         if (path == null || path.size() == 0) {
             return getPosition();
         }
-        return path.get(1);
+        return path.get(0); //singleStep
+        //return path.get(1);
     }
 
     public boolean moveTo(WorldModel world,
@@ -50,24 +51,3 @@ public abstract class AbstractMover extends AbstractAnimatedEntity implements Po
     }
     protected abstract void task(WorldModel world, Entity target, EventScheduler scheduler);
 }
-
-//    public Point nextPosition(WorldModel world, Point destPos) {
-//        int horiz = Integer.signum(destPos.x - this.getPosition().x);
-//        Point newPos = new Point(this.getPosition().x + horiz,
-//                this.getPosition().y);
-//
-//        Optional<Entity> occupant = world.getOccupant(newPos);
-//
-//        if (horiz == 0 ||
-//                (occupant.isPresent() && !(occupant.get() instanceof Ore))) {
-//            int vert = Integer.signum(destPos.y - this.getPosition().y);
-//            newPos = new Point(this.getPosition().x, this.getPosition().y + vert);
-//            occupant = world.getOccupant(newPos);
-//
-//            if (vert == 0 ||
-//                    (occupant.isPresent() && !(occupant.get() instanceof Ore))) {
-//                newPos = this.getPosition();
-//            }
-//        }
-//        return newPos;
-//    }

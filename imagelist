@@ -1,4 +1,4 @@
-blacksmith images/blacksmith.bmp
+blacksmith images/portal.png
 blob images/blob1.bmp 255 255 255 0
 blob images/blob2.bmp 255 255 255 0
 blob images/blob3.bmp 255 255 255 0
@@ -11,14 +11,15 @@ blob images/blob9.bmp 255 255 255 0
 blob images/blob10.bmp 255 255 255 0
 blob images/blob11.bmp 255 255 255 0
 blob images/blob12.bmp 255 255 255 0
-leaves images/leaves.bmp
-miner images/miner1.bmp 252 252 252 0
-miner images/miner2.bmp 252 252 252 0
-miner images/miner3.bmp 252 252 252 0
-miner images/miner4.bmp 252 252 252 0
-miner images/miner5.bmp 252 252 252 0
-obstacle images/obstacle.bmp
-ore images/ore.bmp 201 26 26 0
+land images/back1.png
+miner images/zombie1.png 252 252 252 0
+miner images/zombie2.png 252 252 252 0
+miner images/zombie3.png 252 252 252 0
+miner images/zombie4.png 252 252 252 0
+miner images/zombie5.png 252 252 252 0
+miner images/zombie6.png 252 252 252 0
+obstacle images/fire.bmp
+ore images/soul.png 201 26 26 0
 quake images/quake1.bmp 255 255 255 0
 quake images/quake2.bmp 255 255 255 0
 quake images/quake3.bmp 255 255 255 0
@@ -26,5 +27,17 @@ quake images/quake4.bmp 255 255 255 0
 quake images/quake5.bmp 255 255 255 0
 quake images/quake6.bmp 255 255 255 0
 water images/water.bmp
-vein images/vein.bmp
+smoke images/smoke-1.png
+smoke images/smoke-2.png
+reaper images/reaper1.png
+reaper images/reaper2.png
+reaper images/reaper3.png
+reaper images/reaper4.png
+reaper images/reaper5.png
+reaper images/reaper6.png
+reaper images/reaper7.png
+reaper images/reaper8.png
+ghost images/ghost1.png
+ghost images/ghost2.png
+vein images/soulGem.png
 background_default images/none.bmp

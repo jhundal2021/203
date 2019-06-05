@@ -1,15 +1,8 @@
-import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
-import java.util.Scanner;
-import processing.core.*;
-import processing.event.MouseEvent;
+import java.util.*;
 
-import javax.imageio.*;
+import processing.core.*;
 
 public final class VirtualWorld
    extends PApplet
@@ -17,7 +10,7 @@ public final class VirtualWorld
    private static final int TIMER_ACTION_PERIOD = 100;
 
    private static final int VIEW_WIDTH = 1300;
-   private static final int VIEW_HEIGHT = 950;
+   private static final int VIEW_HEIGHT = 900;
    private static final int TILE_WIDTH = 32;
    private static final int TILE_HEIGHT = 32;
    private static final int WORLD_WIDTH_SCALE = 2;
@@ -190,15 +183,60 @@ public final class VirtualWorld
       }
    }
 
-
+   private int x, y;
    public void mouseClicked(processing.event.MouseEvent e)
    {
-      int x = e.getX()/TILE_WIDTH;
-      int y = e.getY()/TILE_HEIGHT;
-      view.drawImage(x, y, imageStore);
+      x = e.getX()/TILE_WIDTH;
+      y = e.getY()/TILE_HEIGHT;
+      smoke smoke1 = smoke.createSmoke(WorldModel.SMOKE_KEY, distanceFromMouse(0, 0), imageStore.getImageList(WorldModel.SMOKE_KEY));
+      smoke smoke2 = smoke.createSmoke(WorldModel.SMOKE_KEY, distanceFromMouse(0, 1), imageStore.getImageList(WorldModel.SMOKE_KEY));
+      smoke smoke3 = smoke.createSmoke(WorldModel.SMOKE_KEY, distanceFromMouse(0, 2), imageStore.getImageList(WorldModel.SMOKE_KEY));
+      smoke smoke6 = smoke.createSmoke(WorldModel.SMOKE_KEY, distanceFromMouse(1, 1), imageStore.getImageList(WorldModel.SMOKE_KEY));
+      smoke smoke7 = smoke.createSmoke(WorldModel.SMOKE_KEY, distanceFromMouse(1, 2), imageStore.getImageList(WorldModel.SMOKE_KEY));
+      smoke smoke9 = smoke.createSmoke(WorldModel.SMOKE_KEY, distanceFromMouse(2, 0), imageStore.getImageList(WorldModel.SMOKE_KEY));
+      smoke smoke10 = smoke.createSmoke(WorldModel.SMOKE_KEY, distanceFromMouse(2, 1), imageStore.getImageList(WorldModel.SMOKE_KEY));
+      smoke smoke16 = smoke.createSmoke(WorldModel.SMOKE_KEY, distanceFromMouse(0, 1), imageStore.getImageList(WorldModel.SMOKE_KEY));
+      smoke smoke17 = smoke.createSmoke(WorldModel.SMOKE_KEY, distanceFromMouse(0, 2), imageStore.getImageList(WorldModel.SMOKE_KEY));
+      smoke smoke19 = smoke.createSmoke(WorldModel.SMOKE_KEY, distanceFromMouse(-1, 0), imageStore.getImageList(WorldModel.SMOKE_KEY));
+      smoke smoke20 = smoke.createSmoke(WorldModel.SMOKE_KEY, distanceFromMouse(-1, 1), imageStore.getImageList(WorldModel.SMOKE_KEY));
+      smoke smoke30 = smoke.createSmoke(WorldModel.SMOKE_KEY, distanceFromMouse(0, -1), imageStore.getImageList(WorldModel.SMOKE_KEY));
+      smoke smoke33 = smoke.createSmoke(WorldModel.SMOKE_KEY, distanceFromMouse(1, 0), imageStore.getImageList(WorldModel.SMOKE_KEY));
+      smoke smoke34 = smoke.createSmoke(WorldModel.SMOKE_KEY, distanceFromMouse(1, -1), imageStore.getImageList(WorldModel.SMOKE_KEY));
+      world.addEntity(smoke1);
+      world.addEntity(smoke2);
+      world.addEntity(smoke3);
+      world.addEntity(smoke6);
+      world.addEntity(smoke7);
+      world.addEntity(smoke9);
+      world.addEntity(smoke10);
+      world.addEntity(smoke16);
+      world.addEntity(smoke17);
+      world.addEntity(smoke19);
+      world.addEntity(smoke20);
+      world.addEntity(smoke30);
+      world.addEntity(smoke33);
+      world.addEntity(smoke34);
+      reaper Reaper1 = reaper.createReaper(WorldModel.REAPER_KEY, distanceFromMouse(2, -1), imageStore.getImageList(WorldModel.REAPER_KEY), 0, 0);
+      reaper Reaper2 = reaper.createReaper(WorldModel.REAPER_KEY, distanceFromMouse(2, 2), imageStore.getImageList(WorldModel.REAPER_KEY), 0, 0);
+      reaper Reaper3 = reaper.createReaper(WorldModel.REAPER_KEY, distanceFromMouse(-1, 2), imageStore.getImageList(WorldModel.REAPER_KEY), 0, 0);
+      reaper Reaper4 = reaper.createReaper(WorldModel.REAPER_KEY, distanceFromMouse(-1, -1), imageStore.getImageList(WorldModel.REAPER_KEY), 0, 0);
+      world.addEntity(Reaper1);
+      world.addEntity(Reaper2);
+      world.addEntity(Reaper3);
+      world.addEntity(Reaper4);
+      (Reaper1).scheduleActions(scheduler, world, imageStore);
+      (Reaper2).scheduleActions(scheduler, world, imageStore);
+      (Reaper3).scheduleActions(scheduler, world, imageStore);
+      (Reaper4).scheduleActions(scheduler, world, imageStore);
    }
 
+   private Point getMousePoint(){return new Point(x, y);}
 
+   public Point distanceFromMouse(int x, int y){return new Point(getMousePoint().x + x, getMousePoint().y + y);}
+
+   private boolean inProximity(Entity thing, Point pos){
+      return(thing.getPosition().x > pos.x && thing.getPosition().y > pos.y);
+   }
 
    public static void main(String [] args)
    {

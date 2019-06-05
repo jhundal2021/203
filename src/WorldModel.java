@@ -18,6 +18,9 @@ final class WorldModel
    private static final String ORE_KEY = "ore";
    private static final String SMITH_KEY = "blacksmith";
    private static final String VEIN_KEY = "vein";
+   public static final String SMOKE_KEY = "smoke";
+   public static final String REAPER_KEY = "reaper";
+   public static final String GHOST_KEY = "ghost";
    private static final int BGND_NUM_PROPERTIES = 4;
    private static final int BGND_ID = 1;
    private static final int BGND_COL = 2;
@@ -47,7 +50,6 @@ final class WorldModel
    private static final int VEIN_COL = 2;
    private static final int VEIN_ROW = 3;
    private static final int VEIN_ACTION_PERIOD = 4;
-   public static final String IMAGE_NAME = "image_default";
 
    public WorldModel(int numRows, int numCols, Background defaultBackground)
    {
@@ -85,15 +87,6 @@ final class WorldModel
       }
    }
 
-   public void drawImageWorld(int x, int y, Viewport view, List<PImage> listImage)
-   {
-      Point worldPoint = view.viewportToWorld(x, y);
-
-      if(withinBounds(worldPoint))
-      {
-         setBackgroundCell(worldPoint, new Background(IMAGE_NAME, listImage));
-      }
-   }
 
    public void removeEntity(Entity entity)
    {
@@ -331,7 +324,7 @@ final class WorldModel
       }
    }
 
-   private Entity getOccupancyCell(Point pos)
+   public Entity getOccupancyCell(Point pos)
    {
       return this.occupancy[pos.y][pos.x];
    }

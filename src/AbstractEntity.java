@@ -28,5 +28,7 @@ public abstract class AbstractEntity implements Entity{
 
     public List<PImage> getImages() { return images; }
 
+    public void setImages(List<PImage> images){this.images=images;}
+
     public PImage getCurrentImage() { return (this.images.get(this.imageIndex)); }
 }
