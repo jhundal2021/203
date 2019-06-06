@@ -14,14 +14,13 @@ public abstract class AbstractMover extends AbstractAnimatedEntity implements Po
     private BiPredicate<Point, Point> withinReach(){ return (pt1, pt2) -> Point.adjacent(pt1, pt2);}
 
     public Point nextPosition(WorldModel world, Point destPos) {
-        PathingStrategy p = new SingleStepPathingStrategy();
-        //PathingStrategy p = new AStarPathingStrategy();
+        //PathingStrategy p = new SingleStepPathingStrategy();
+        PathingStrategy p = new AStarPathingStrategy();
         List<Point> path = p.computePath(getPosition(), destPos, canPassThrough(world), withinReach(), p.CARDINAL_NEIGHBORS);
         if (path == null || path.size() == 0) {
             return getPosition();
         }
-        return path.get(0); //singleStep
-        //return path.get(1);
+        return path.get(0);
     }
 
     public boolean moveTo(WorldModel world,

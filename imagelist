@@ -19,6 +19,7 @@ miner images/zombie4.png 252 252 252 0
 miner images/zombie5.png 252 252 252 0
 miner images/zombie6.png 252 252 252 0
 obstacle images/fire.bmp
+gate images/gate.png
 ore images/soul.png 201 26 26 0
 quake images/quake1.bmp 255 255 255 0
 quake images/quake2.bmp 255 255 255 0
@@ -27,6 +28,7 @@ quake images/quake4.bmp 255 255 255 0
 quake images/quake5.bmp 255 255 255 0
 quake images/quake6.bmp 255 255 255 0
 water images/water.bmp
+grave images/grave1.png
 smoke images/smoke-1.png
 smoke images/smoke-2.png
 reaper images/reaper1.png
@@ -37,6 +39,9 @@ reaper images/reaper5.png
 reaper images/reaper6.png
 reaper images/reaper7.png
 reaper images/reaper8.png
+happy_reaper images/happy_reaper1.png
+happy_reaper images/happy_reaper2.png
+happy_reaper images/happy_reaper3.png
 ghost images/ghost1.png
 ghost images/ghost2.png
 vein images/soulGem.png

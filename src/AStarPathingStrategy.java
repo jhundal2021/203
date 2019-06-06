@@ -20,6 +20,7 @@ class AStarPathingStrategy implements PathingStrategy{
         if(current.prior == null)
         {
             Collections.reverse(path);
+            path.remove(0);
             return path;
         }
         return constructPath(path, current.prior);

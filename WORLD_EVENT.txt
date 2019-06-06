@@ -1,0 +1,16 @@
+WORLD_EVENT.txt
+
+My partner was Shailesh Alagan and he was responsible for the placement of the items in the game, we both collected images, he worked on the first implementation of the mouse click. I worked on creating the new entities and how they behave and the general idea of the game. I submitted the zip files
+In this game we tried to use the same factory design pattern as in the previous projects.
+
+We changed the original game by making it so there are zombies that run around and grab "souls" (depicted as hearts). The zombies start off in their graves, then go after souls.
+They then bring the souls to the portal in the middle.
+
+When the user clicks the mouse, an area of smoke appears, and any zombies within 5 points of the mouse click get turned into "soul gems". Also when the user clicks, 4 reapers appear, each starting off on a corner of the map. These reapers chase the zombies
+zombies. Each click spawns 4 reapers. Once a reaper reaches and touches a zombie, the zombie turns into a ghost and heads towards the "gates of heaven" in the bottom left part of the map.
+
+Once all the zombies have turned into ghosts, the reapers will start laughing, and if the user were to click again after all the zombies have been caught, the area of smoke with the 4 reapers appears, but the reapers will not move since there are no zombies present. The  4 new entities would be the reapers, ghosts, happy reapers, and gates. The reapers, happy reapers, and ghosts are the moving entities. The obstacles are the blocks
+of fire, and the gates and portal in the middle of the game are where some of the zombies would start moving from.
+
+Since we had trouble sharing the video, we decided to post it on youtube at the following link:
+https://youtu.be/VkqjS-igVZw

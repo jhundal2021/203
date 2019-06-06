@@ -17,10 +17,12 @@ final class WorldModel
    private static final String OBSTACLE_KEY = "obstacle";
    private static final String ORE_KEY = "ore";
    private static final String SMITH_KEY = "blacksmith";
-   private static final String VEIN_KEY = "vein";
+   private static final String GATE_KEY = "gate";
+   public static final String VEIN_KEY = "vein";
    public static final String SMOKE_KEY = "smoke";
    public static final String REAPER_KEY = "reaper";
    public static final String GHOST_KEY = "ghost";
+   public static final String HAPPY_KEY = "happy_reaper";
    private static final int BGND_NUM_PROPERTIES = 4;
    private static final int BGND_ID = 1;
    private static final int BGND_COL = 2;
@@ -40,6 +42,10 @@ final class WorldModel
    private static final int ORE_ID = 1;
    private static final int ORE_COL = 2;
    private static final int ORE_ROW = 3;
+   private static final int GATE_NUM_PROPERTIES = 4;
+   private static final int GATE_ID = 1;
+   private static final int GATE_COL = 2;
+   private static final int GATE_ROW = 3;
    private static final int ORE_ACTION_PERIOD = 4;
    private static final int SMITH_NUM_PROPERTIES = 4;
    private static final int SMITH_ID = 1;
@@ -172,10 +178,20 @@ final class WorldModel
                return this.parseSmith(properties, imageStore);
             case VEIN_KEY:
                return this.parseVein(properties, imageStore);
+            case GATE_KEY:
+               return this.parseGate(properties, imageStore);
          }
       }
 
       return false;
+   }
+
+   public void drawSmoke(Point worldPoint, List<PImage> listImage)
+   {
+      if(withinBounds(worldPoint))
+      {
+         setBackgroundCell(worldPoint, new Background(SMOKE_KEY, listImage));
+      }
    }
 
    private boolean parseBackground(String [] properties, ImageStore imageStore)
@@ -191,6 +207,22 @@ final class WorldModel
 
       return properties.length == BGND_NUM_PROPERTIES;
    }
+
+   private boolean parseGate(String [] properties, ImageStore imageStore)
+   {
+      if (properties.length == GATE_NUM_PROPERTIES)
+      {
+         Point pt = new Point(
+                 Integer.parseInt(properties[GATE_COL]),
+                 Integer.parseInt(properties[GATE_ROW]));
+         Entity entity = pt.createGate(properties[GATE_ID],
+                 imageStore.getImageList(GATE_KEY));
+         this.tryAddEntity(entity);
+      }
+
+      return properties.length == GATE_NUM_PROPERTIES;
+   }
+
 
    private boolean parseMiner(String [] properties, ImageStore imageStore)
    {

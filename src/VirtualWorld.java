@@ -188,38 +188,22 @@ public final class VirtualWorld
    {
       x = e.getX()/TILE_WIDTH;
       y = e.getY()/TILE_HEIGHT;
-      smoke smoke1 = smoke.createSmoke(WorldModel.SMOKE_KEY, distanceFromMouse(0, 0), imageStore.getImageList(WorldModel.SMOKE_KEY));
-      smoke smoke2 = smoke.createSmoke(WorldModel.SMOKE_KEY, distanceFromMouse(0, 1), imageStore.getImageList(WorldModel.SMOKE_KEY));
-      smoke smoke3 = smoke.createSmoke(WorldModel.SMOKE_KEY, distanceFromMouse(0, 2), imageStore.getImageList(WorldModel.SMOKE_KEY));
-      smoke smoke6 = smoke.createSmoke(WorldModel.SMOKE_KEY, distanceFromMouse(1, 1), imageStore.getImageList(WorldModel.SMOKE_KEY));
-      smoke smoke7 = smoke.createSmoke(WorldModel.SMOKE_KEY, distanceFromMouse(1, 2), imageStore.getImageList(WorldModel.SMOKE_KEY));
-      smoke smoke9 = smoke.createSmoke(WorldModel.SMOKE_KEY, distanceFromMouse(2, 0), imageStore.getImageList(WorldModel.SMOKE_KEY));
-      smoke smoke10 = smoke.createSmoke(WorldModel.SMOKE_KEY, distanceFromMouse(2, 1), imageStore.getImageList(WorldModel.SMOKE_KEY));
-      smoke smoke16 = smoke.createSmoke(WorldModel.SMOKE_KEY, distanceFromMouse(0, 1), imageStore.getImageList(WorldModel.SMOKE_KEY));
-      smoke smoke17 = smoke.createSmoke(WorldModel.SMOKE_KEY, distanceFromMouse(0, 2), imageStore.getImageList(WorldModel.SMOKE_KEY));
-      smoke smoke19 = smoke.createSmoke(WorldModel.SMOKE_KEY, distanceFromMouse(-1, 0), imageStore.getImageList(WorldModel.SMOKE_KEY));
-      smoke smoke20 = smoke.createSmoke(WorldModel.SMOKE_KEY, distanceFromMouse(-1, 1), imageStore.getImageList(WorldModel.SMOKE_KEY));
-      smoke smoke30 = smoke.createSmoke(WorldModel.SMOKE_KEY, distanceFromMouse(0, -1), imageStore.getImageList(WorldModel.SMOKE_KEY));
-      smoke smoke33 = smoke.createSmoke(WorldModel.SMOKE_KEY, distanceFromMouse(1, 0), imageStore.getImageList(WorldModel.SMOKE_KEY));
-      smoke smoke34 = smoke.createSmoke(WorldModel.SMOKE_KEY, distanceFromMouse(1, -1), imageStore.getImageList(WorldModel.SMOKE_KEY));
-      world.addEntity(smoke1);
-      world.addEntity(smoke2);
-      world.addEntity(smoke3);
-      world.addEntity(smoke6);
-      world.addEntity(smoke7);
-      world.addEntity(smoke9);
-      world.addEntity(smoke10);
-      world.addEntity(smoke16);
-      world.addEntity(smoke17);
-      world.addEntity(smoke19);
-      world.addEntity(smoke20);
-      world.addEntity(smoke30);
-      world.addEntity(smoke33);
-      world.addEntity(smoke34);
-      reaper Reaper1 = reaper.createReaper(WorldModel.REAPER_KEY, distanceFromMouse(2, -1), imageStore.getImageList(WorldModel.REAPER_KEY), 0, 0);
-      reaper Reaper2 = reaper.createReaper(WorldModel.REAPER_KEY, distanceFromMouse(2, 2), imageStore.getImageList(WorldModel.REAPER_KEY), 0, 0);
-      reaper Reaper3 = reaper.createReaper(WorldModel.REAPER_KEY, distanceFromMouse(-1, 2), imageStore.getImageList(WorldModel.REAPER_KEY), 0, 0);
-      reaper Reaper4 = reaper.createReaper(WorldModel.REAPER_KEY, distanceFromMouse(-1, -1), imageStore.getImageList(WorldModel.REAPER_KEY), 0, 0);
+      world.drawSmoke(distanceFromMouse(0, 0), imageStore.getImageList(WorldModel.SMOKE_KEY));
+      world.drawSmoke(distanceFromMouse(0, 1), imageStore.getImageList(WorldModel.SMOKE_KEY));
+      world.drawSmoke(distanceFromMouse(0, 2), imageStore.getImageList(WorldModel.SMOKE_KEY));
+      world.drawSmoke(distanceFromMouse(1, 1), imageStore.getImageList(WorldModel.SMOKE_KEY));
+      world.drawSmoke(distanceFromMouse(1, 2), imageStore.getImageList(WorldModel.SMOKE_KEY));
+      world.drawSmoke(distanceFromMouse(2, 0), imageStore.getImageList(WorldModel.SMOKE_KEY));
+      world.drawSmoke(distanceFromMouse(2, 1), imageStore.getImageList(WorldModel.SMOKE_KEY));
+      world.drawSmoke(distanceFromMouse(-1, 0), imageStore.getImageList(WorldModel.SMOKE_KEY));
+      world.drawSmoke(distanceFromMouse(-1, 1), imageStore.getImageList(WorldModel.SMOKE_KEY));
+      world.drawSmoke(distanceFromMouse(0, -1), imageStore.getImageList(WorldModel.SMOKE_KEY));
+      world.drawSmoke(distanceFromMouse(1, 0), imageStore.getImageList(WorldModel.SMOKE_KEY));
+      world.drawSmoke(distanceFromMouse(1, -1), imageStore.getImageList(WorldModel.SMOKE_KEY));
+      reaper Reaper1 = reaper.createReaper(WorldModel.REAPER_KEY, new Point(1, 1), imageStore.getImageList(WorldModel.REAPER_KEY), 0, 0);
+      reaper Reaper2 = reaper.createReaper(WorldModel.REAPER_KEY, new Point(38, 1), imageStore.getImageList(WorldModel.REAPER_KEY), 0, 0);
+      reaper Reaper3 = reaper.createReaper(WorldModel.REAPER_KEY, new Point(1, 28), imageStore.getImageList(WorldModel.REAPER_KEY), 0, 0);
+      reaper Reaper4 = reaper.createReaper(WorldModel.REAPER_KEY, new Point(38, 28), imageStore.getImageList(WorldModel.REAPER_KEY), 0, 0);
       world.addEntity(Reaper1);
       world.addEntity(Reaper2);
       world.addEntity(Reaper3);
@@ -228,14 +212,27 @@ public final class VirtualWorld
       (Reaper2).scheduleActions(scheduler, world, imageStore);
       (Reaper3).scheduleActions(scheduler, world, imageStore);
       (Reaper4).scheduleActions(scheduler, world, imageStore);
+      nearPoint(5).forEach(point -> {if (world.getOccupant(point).isPresent() && (world.getOccupancyCell(point).getClass().equals(Miner_Not_Full.class)
+               || world.getOccupancyCell(point).getClass().equals(Miner_Full.class))) {
+         world.removeEntity(world.getOccupancyCell(point));
+         Vein newvein = new Vein("vein", point, imageStore.getImageList(WorldModel.VEIN_KEY), 0);
+         world.addEntity(newvein);
+         }});
    }
 
    private Point getMousePoint(){return new Point(x, y);}
 
    public Point distanceFromMouse(int x, int y){return new Point(getMousePoint().x + x, getMousePoint().y + y);}
 
-   private boolean inProximity(Entity thing, Point pos){
-      return(thing.getPosition().x > pos.x && thing.getPosition().y > pos.y);
+   private List<Point> nearPoint(int radius){
+      List<Point> points = new ArrayList<>();
+      Point mouse = new Point (getMousePoint().x, getMousePoint().y);
+      for(int x = -radius; x <= radius; ++x)
+         for(int y = -radius; y <= radius; ++y)
+            if(x * x + y * y <= radius* radius)   {
+               points.add(new Point(x + mouse.x, y + mouse.y));
+            }
+      return(points);
    }
 
    public static void main(String [] args)

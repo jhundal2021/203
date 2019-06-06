@@ -74,9 +74,9 @@ final class Point
       return new Obstacle(id, this, images);
    }
 
-   public Ore createOre(String id, int actionPeriod, List<PImage> images)
+   public Gate createGate(String id, List<PImage> images)
    {
-      return new Ore(id, this, images, actionPeriod);
+      return new Gate(id, this, images);
    }
 
    public Ore_Blob createOreBlob(String id, int actionPeriod, int animationPeriod, List<PImage> images)
@@ -84,9 +84,9 @@ final class Point
       return new Ore_Blob(id, this, images, actionPeriod, animationPeriod);
    }
 
-   public Quake createQuake(List<PImage> images)
+   public Ore createOre(String id, int actionPeriod, List<PImage> images)
    {
-      return new Quake(QUAKE_ID, this, images, QUAKE_ACTION_PERIOD, QUAKE_ANIMATION_PERIOD);
+      return new Ore(id, this, images, actionPeriod);
    }
 
    public Vein createVein(String id, int actionPeriod, List<PImage> images)
@@ -96,6 +96,15 @@ final class Point
 
    public Ghost createGhost(String id, Point position, List<PImage> images, int actionPeriod, int animationPeriod) {
       return new Ghost(id, position, images, actionPeriod, animationPeriod);
+   }
+
+   public HappyReaper createHappy(String id, Point position, List<PImage> images, int actionPeriod, int animationPeriod) {
+      return new HappyReaper(id, position, images, actionPeriod, animationPeriod);
+   }
+
+   public Quake createQuake(List<PImage> images)
+   {
+      return new Quake(QUAKE_ID, this, images, QUAKE_ACTION_PERIOD, QUAKE_ANIMATION_PERIOD);
    }
 
    public static Optional<Entity> nearestEntity(List<Entity> entities, Point pos)

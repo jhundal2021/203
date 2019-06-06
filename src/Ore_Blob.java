@@ -28,6 +28,8 @@ public class Ore_Blob extends AbstractMover{
         scheduler.scheduleEvent(this,
                 Activity.createActivityAction(this, world, imageStore),
                 nextPeriod);
+        world.removeEntity(this);
+        scheduler.unscheduleAllEvents(this);
     }
 
     public void task(WorldModel world, Entity target, EventScheduler scheduler){

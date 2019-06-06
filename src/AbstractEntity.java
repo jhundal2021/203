@@ -18,6 +18,8 @@ public abstract class AbstractEntity implements Entity{
         return id;
     }
 
+    public void setID(String id){ this.id = id;}
+
     public Point getPosition() {
         return position;
     }
@@ -28,7 +30,7 @@ public abstract class AbstractEntity implements Entity{
 
     public List<PImage> getImages() { return images; }
 
-    public void setImages(List<PImage> images){this.images=images;}
+    public void setImages(List<PImage> images){this.images = images;}
 
     public PImage getCurrentImage() { return (this.images.get(this.imageIndex)); }
 }
